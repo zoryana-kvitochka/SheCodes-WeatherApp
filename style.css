@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;700&display=swap");
+
+.weathericons {
+  width: 100px;
+  height: 100px;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 5% 20% 20% 20%;
+  background: linear-gradient(
+    109.6deg,
+    rgb(17, 151, 147) 11.2%,
+    rgb(154, 214, 212) 55.4%,
+    rgb(255, 233, 171) 100.2%
+  );
+  max-width: 80%;
+}
+.background {
+  background-image: url(clouds.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+h3 {
+  text-align: center;
+  padding-top: 20px;
+}
+.main-text {
+  font-weight: 300;
+  font-size: 12px;
+}
+form {
+  border: inset rgba(129, 148, 167, 0.1);
+  border-radius: 5px;
+  margin: 30px 0 0 40px;
+  background-color: rgba(129, 148, 167, 0.1);
+  max-width: 358px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#input-text {
+  width: 20em;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none;
+  padding: 8px 10px;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  font-weight: 300;
+}
+.input-btn {
+  padding: 8px 15px;
+  border-radius: 5px;
+  background: #329794;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  font-size: 13px;
+  border: none;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.3);
+  border-color: #329794;
+  transition: all 200ms ease-in-out;
+}
+.input-btn:hover {
+  border-color: #329794;
+  background-color: transparent;
+  color: #329794;
+  cursor: pointer;
+}
+#currentGeolocation {
+  padding: 10px 15px 10px 11px;
+  border-radius: 5px;
+  background: #329794;
+  border: none;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.3);
+  border-color: #329794;
+  transition: all 200ms ease-in-out;
+  max-width: 40px;
+  max-height: 38px;
+  margin: 30px 0 0 15px;
+}
+.current-geolocation {
+  width: 20px;
+  display: block;
+  margin: 0 auto;
+}
+#currentGeolocation:hover {
+  background-color: transparent;
+  color: #329794;
+  cursor: pointer;
+}
+.search-city {
+  display: flex;
+  justify-content: start;
+}
+.current-forecast {
+  display: flex;
+  padding: 50px 0 0 50px;
+}
+img.current-weather {
+  float: right;
+}
+.form-input-current {
+  display: flex;
+  margin-left: 40px;
+  justify-content: space-between;
+}
+#celcius-link,
+#fahrenheit-link {
+  text-decoration: none;
+}
+#current-location {
+  display: block;
+  font-size: 25px;
+  margin: 20px 50px 20px 0;
+}
+p.current-weather {
+  min-width: 50px;
+}

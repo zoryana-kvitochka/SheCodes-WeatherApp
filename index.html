@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded background">
+        <h3>Oh baby it's <span>like an oven</span> outside!</h3>
+        <section class="main-text">
+          <div class="search-city">
+            <form id="form">
+              <input
+                id="input-text"
+                type="text"
+                placeholder="Choose your city"
+                autocomplete="off"
+                autofocus="on"
+              />
+              <button class="input-btn" type="submit" class="form-button">
+                Get forecast
+              </button>
+            </form>
+            <button id="currentGeolocation">
+              <img
+                class="current-geolocation"
+                src="geolocation.png"
+                alt="current geolocation icon"
+              />
+            </button>
+          </div>
+          <div class="form-input-current">
+            <div class="current-forecast">
+              <p id="current-location">Sumy</p>
+              <br /><br />
+              <p class="current-weather">
+                <span id="current-weather-date">Monday Aug 8, 18:30 </span
+                ><br />
+                <span id="temperature">28 </span
+                ><a href="#" id="celcius-link">°C</a>
+                <a href="#" id="fahrenheit-link">°F</a>
+                <br />Feels like 27°C <br />
+                High 29°C Low 18°C <br />Sunny
+              </p>
+              <img
+                class="weathericons current-weather"
+                src="weathericons/noun-brightness-4436898.png"
+                alt="sunny"
+              />
+            </div>
+          </div>
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <img
+                  class="weathericons"
+                  src="weathericons/noun-wind-1002062.png"
+                  alt="windy"
+                />
+                <p>
+                  Tue Aug 9 <br />
+                  High 21°C Low 12°C <br />Windy
+                </p>
+              </div>
+              <div class="col">
+                <img
+                  class="weathericons"
+                  src="weathericons/noun-cloud-1002052.png"
+                  alt="cloudy"
+                />
+                <p>
+                  Wed Aug 10 <br />
+                  High 40°C Low 28°C <br />Cloudy
+                </p>
+              </div>
+              <div class="col">
+                <img
+                  class="weathericons"
+                  src="weathericons/noun-rain-1002055.png"
+                  alt="rainstorm"
+                />
+                <p>
+                  Thu Aug 11 <br />
+                  High 9°C Low 17°C <br />Rainstorm
+                </p>
+              </div>
+              <div class="col">
+                <img
+                  class="weathericons"
+                  src="weathericons/noun-weather-2593047.png"
+                  alt="cloudy"
+                />
+                <p>
+                  Fri Aug 12 <br />
+                  High 27°C Low 11°C <br />Cloudy
+                </p>
+              </div>
+              <div class="col">
+                <img
+                  class="weathericons"
+                  src="weathericons/noun-rain-1002055.png"
+                  alt="mild rain"
+                />
+                <p>
+                  Sat Aug 13 <br />
+                  High 24°C Low 12°C <br />Mild rain
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
