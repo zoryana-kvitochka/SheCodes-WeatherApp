@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="icon" type="image/x-icon" href="sunny.ico" />
+    <link rel="icon" type="image/x-icon" href="hot.ico" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,7 +18,10 @@
   <body>
     <div class="container">
       <div class="shadow-lg p-3 mb-5 bg-body rounded background">
-        <h3>Oh baby it's <span>like an oven</span> outside!</h3>
+        <h3>
+          Oh baby it's
+          <span id="current-weather-description"></span> outside!
+        </h3>
         <section class="main-text">
           <div class="search-city">
             <form id="form">
@@ -40,24 +43,27 @@
                 alt="current geolocation icon"
               />
             </button>
+            <button class="imperial" id="imperial-btn">Imperial</button>
+            <button class="metric" id="metric-btn">Metric</button>
           </div>
           <div class="form-input-current">
             <div class="current-forecast">
-              <p id="current-location">Sumy</p>
+              <p id="current-location"></p>
               <ul class="current-weather">
-                <li id="current-weather-date">Monday Aug 8, 18:30</li>
-                <li id="temperature">
-                  28 <a href="#" id="celcius-link">°C</a>
-                  <a href="#" id="fahrenheit-link">°F</a>
+                <li>Last updated: <span id="current-weather-date"></span></li>
+                <li id="current-temperature"></li>
+                <li id="current-temp-feels-like"></li>
+                <li>
+                  High <span id="current-temp-max"></span> Low
+                  <span id="current-temp-min"></span>
                 </li>
-                <li>High 29°C Low 18°C</li>
-                <li>Sunny</li>
                 <li>
                   <img
                     class="hum-wind"
                     src="weathericons/humidity.png"
                     alt="humidity level"
-                  />65%
+                  />
+                  <span id="current-humidity"></span>
                 </li>
                 <li>
                   <img
@@ -65,17 +71,13 @@
                     src="weathericons/windspeed.png"
                     alt="wind speed"
                   />
-                  3 km/h
+                  <span id="wind-speed"></span>
                 </li>
               </ul>
-              <img
-                class="weathericons current-weather"
-                src="weathericons/clear.gif"
-                alt="sunny"
-              />
+              <img id="current-weather-icon" src="" alt="" />
             </div>
           </div>
-          <div class="container text-center">
+          <!-- <div class="container text-center">
             <div class="row">
               <div class="col">
                 <img
@@ -133,7 +135,7 @@
                 </p>
               </div>
             </div>
-          </div>
+          </div> -->
         </section>
       </div>
       <footer>
