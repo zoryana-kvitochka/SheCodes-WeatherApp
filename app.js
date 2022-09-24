@@ -11,14 +11,14 @@ let currentTemperatureMax = document.querySelector("#current-temp-max");
 let currentWeatherDate = document.querySelector("#current-weather-date");
 let iconElement = document.querySelector("#current-weather-icon");
 getGeolocationForecast();
-
+displayForecast();
 let form = document.querySelector("#form");
 let searchInput = document.querySelector("#input-text");
 let currrentLocationResult = document.querySelector("#current-location");
 function currrentLocation(event) {
   event.preventDefault();
   currrentLocationResult.innerHTML = `${capitalize(searchInput.value.trim())} `;
-  let apiKey = "5d9ddb47e7d12cd322569c5f2419881f";
+  let apiKey = "c819171fe0abdc14039af4ef5dda283b";
   let city = searchInput.value.trim();
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   axios.get(apiURL).then(showTemperature);
@@ -71,12 +71,18 @@ metriccalc.addEventListener("click", IToM);
 function handlePosition(position) {
   let lat = parseFloat(position.coords.latitude);
   let lon = parseFloat(position.coords.longitude);
-  let apiKey = "5d9ddb47e7d12cd322569c5f2419881f";
+  let apiKey = "c819171fe0abdc14039af4ef5dda283b";
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   axios.get(apiURL).then(showTemperature);
   let apiURLCity = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`;
   axios.get(apiURLCity).then(showCurrentCity);
   axios.get(apiURL).then(formatDate);
+}
+
+function getForecast(coordinates) {
+  let apiKey = "c819171fe0abdc14039af4ef5dda283b";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&appid=${apiKey}`;
+  axios.get(apiURL).then(displayForecast);
 }
 
 function showTemperature(response) {
@@ -99,6 +105,7 @@ function showTemperature(response) {
   );
   iconElement.setAttribute("alt", `${response.data.weather[0].description}`);
   currentWeatherDate.innerHTML = formatDate(response.data.dt * 1000);
+  getForecast(response.data.coord);
 }
 
 function showCurrentCity(cityResponse) {
@@ -148,4 +155,25 @@ function formatDate(timestamp) {
   ];
   let month = months[date.getMonth()];
   return `${day}, ${month} ${date.getDate()} ${hours}:${minutes}`;
+}
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+                <div class="weekday-date">${day}</div>
+                <img class="weathericon" src="" alt="" />
+                <div class="future-forecast">
+                  <i class="fa-solid fa-temperature-arrow-up"></i>
+                  <span class="forecast-temp-high">12</span>
+                  <i class="fa-solid fa-temperature-arrow-down"></i>
+                  <span class="forecast-temp-low">1</span>
+                </div>`;
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
+  });
 }

@@ -7,21 +7,17 @@
 body {
   font-family: "Poppins", sans-serif;
   margin: 5% 20% 20% 20%;
-  background: linear-gradient(
-    109.6deg,
-    rgb(17, 151, 147) 11.2%,
-    rgb(154, 214, 212) 55.4%,
-    rgb(255, 233, 171) 100.2%
-  );
+  background-image: url(backgroundimg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   max-width: 80%;
 }
 .container {
   max-width: 725px;
 }
-.background {
-  background-image: url(clouds.png);
-  background-size: cover;
-  background-repeat: no-repeat;
+.bg-body {
+  --bs-bg-opacity: 0.3;
+  background-color: rgba(245, 245, 245, 0.3);
 }
 h3 {
   text-align: center;
@@ -54,30 +50,30 @@ form {
 .input-btn {
   padding: 8px 15px;
   border-radius: 5px;
-  background: #329794;
+  background: #a42911;
   color: white;
   font-family: "Poppins", sans-serif;
   line-height: 1.5;
   font-size: 13px;
   border: none;
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.3);
-  border-color: #329794;
+  border-color: #a42911;
   transition: all 200ms ease-in-out;
   margin-left: 3px;
 }
 .input-btn:hover {
-  border-color: #329794;
+  border-color: #a42911;
   background-color: transparent;
-  color: #329794;
+  color: #a42911;
   cursor: pointer;
 }
 #currentGeolocation {
   padding: 10px 15px 10px 11px;
   border-radius: 5px;
-  background: #329794;
+  background: #a42911;
   border: none;
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.3);
-  border-color: #329794;
+  border-color: #a42911;
   transition: all 200ms ease-in-out;
   max-width: 40px;
   max-height: 38px;
@@ -92,18 +88,18 @@ form {
 .metric:hover,
 #currentGeolocation:hover {
   background-color: transparent;
-  color: #329794;
+  color: #a42911;
   cursor: pointer;
 }
 .imperial,
 .metric {
   padding: 10px 15px;
   border-radius: 5px;
-  background: #329794;
+  background: #a42911;
   border: none;
   color: white;
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.3);
-  border-color: #329794;
+  border-color: #a42911;
   transition: all 200ms ease-in-out;
   max-width: 90px;
   max-height: 38px;
@@ -149,10 +145,22 @@ p.current-weather {
 }
 .footer-link {
   text-decoration: none;
-  color: #329794;
+  color: #a42911;
+}
+.footer-link:hover {
+  color: #f7f5f2;
 }
 footer {
   display: flex;
   justify-content: center;
   font-size: 10px;
+}
+.weekday-date {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 300;
+}
+.future-forecast {
+  text-align: center;
+  font-size: 13px;
 }
