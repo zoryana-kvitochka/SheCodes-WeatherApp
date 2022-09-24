@@ -11,7 +11,7 @@ let currentTemperatureMax = document.querySelector("#current-temp-max");
 let currentWeatherDate = document.querySelector("#current-weather-date");
 let iconElement = document.querySelector("#current-weather-icon");
 getGeolocationForecast();
-displayForecast();
+
 let form = document.querySelector("#form");
 let searchInput = document.querySelector("#input-text");
 let currrentLocationResult = document.querySelector("#current-location");
@@ -157,23 +157,39 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${date.getDate()} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+
+  return day;
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
-                <div class="weekday-date">${day}</div>
-                <img class="weathericon" src="" alt="" />
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
+                <div class="weekday-date">${formatDay(forecastDay.dt)}</div>
+                <img class="weathericon" src="http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png" alt="${forecastDay.weather[0].description}"/>
                 <div class="future-forecast">
                   <i class="fa-solid fa-temperature-arrow-up"></i>
-                  <span class="forecast-temp-high">12</span>
+                  <span class="forecast-temp-high">${Math.round(
+                    forecastDay.temp.max
+                  )}°</span>
                   <i class="fa-solid fa-temperature-arrow-down"></i>
-                  <span class="forecast-temp-low">1</span>
+                  <span class="forecast-temp-low">${Math.round(
+                    forecastDay.temp.min
+                  )}°</span>
                 </div>`;
-    forecastHTML = forecastHTML + `</div>`;
-    forecastElement.innerHTML = forecastHTML;
+      forecastHTML = forecastHTML + `</div>`;
+      forecastElement.innerHTML = forecastHTML;
+    }
   });
 }
