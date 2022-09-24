@@ -110,6 +110,9 @@ function showTemperature(response) {
   iconElement.setAttribute("alt", `${response.data.weather[0].description}`);
   currentWeatherDate.innerHTML = formatDate(response.data.dt * 1000);
   getForecast(response.data.coord);
+  let music = document.querySelector("#music");
+  music.play();
+  music.volume = 0.05;
 }
 
 function showCurrentCity(cityResponse) {
