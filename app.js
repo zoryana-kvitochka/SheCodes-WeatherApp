@@ -6,6 +6,9 @@ let humidityElement = document.querySelector("#current-humidity");
 let currentWeatherDescription = document.querySelector(
   "#current-weather-description"
 );
+let currentTemperatureFeelsLike = document.querySelector(
+  "#current-temp-feels-like"
+);
 let currentTemperatureMin = document.querySelector("#current-temp-min");
 let currentTemperatureMax = document.querySelector("#current-temp-max");
 let currentWeatherDate = document.querySelector("#current-weather-date");
@@ -33,40 +36,40 @@ function capitalize(searchInput) {
 
 form.addEventListener("submit", currrentLocation);
 
-function mToI() {
-  if (temperatureElement.innerHTML.split("").includes("F")) {
-    return;
-  }
-  let degreesMain = parseFloat(temperatureElement.innerHTML) * 1.8 + 32;
-  let degreesMin = parseFloat(currentTemperatureMin.innerHTML) * 1.8 + 32;
-  let degreesMax = parseFloat(currentTemperatureMax.innerHTML) * 1.8 + 32;
-  temperatureElement.innerHTML = `${Math.round(degreesMain)} \u00B0 F`;
-  currentTemperatureMin.innerHTML = `${Math.round(degreesMin)} \u00B0 F`;
-  currentTemperatureMax.innerHTML = `${Math.round(degreesMax)} \u00B0 F`;
-  let speed = parseFloat(windSpeedElement.innerHTML) * 0.62137;
-  windSpeedElement.innerHTML = `${Math.round(speed)} Mph`;
-}
+// function mToI() {
+//   if (temperatureElement.innerHTML.split("").includes("F")) {
+//     return;
+//   }
+//   let degreesMain = parseFloat(temperatureElement.innerHTML) * 1.8 + 32;
+//   let degreesMin = parseFloat(currentTemperatureMin.innerHTML) * 1.8 + 32;
+//   let degreesMax = parseFloat(currentTemperatureMax.innerHTML) * 1.8 + 32;
+//   temperatureElement.innerHTML = `${Math.round(degreesMain)} \u00B0 F`;
+//   currentTemperatureMin.innerHTML = `${Math.round(degreesMin)} \u00B0 F`;
+//   currentTemperatureMax.innerHTML = `${Math.round(degreesMax)} \u00B0 F`;
+//   let speed = parseFloat(windSpeedElement.innerHTML) * 0.62137;
+//   windSpeedElement.innerHTML = `${Math.round(speed)} Mph`;
+// }
 
-imperialcalc.addEventListener("click", mToI);
-let metriccalc = document.querySelector("#metric-btn");
+// imperialcalc.addEventListener("click", mToI);
+// let metriccalc = document.querySelector("#metric-btn");
 
-function IToM() {
-  if (temperatureElement.innerHTML.split("").includes("C")) {
-    return;
-  }
-  let temp = parseFloat(temperatureElement.innerHTML) - 32;
-  let tempMin = parseFloat(currentTemperatureMin.innerHTML) - 32;
-  let tempMax = parseFloat(currentTemperatureMax.innerHTML) - 32;
-  let degreesMain = temp / 1.8;
-  let degreesMin = tempMin / 1.8;
-  let degreesMax = tempMax / 1.8;
-  temperatureElement.innerHTML = `${Math.round(degreesMain)} \u00B0 C`;
-  currentTemperatureMin.innerHTML = `${Math.round(degreesMin)} \u00B0 C`;
-  currentTemperatureMax.innerHTML = `${Math.round(degreesMax)} \u00B0 C`;
-  windSpeedElement.innerHTML = `${originalWindSpeed} km/h`;
-}
+// function IToM() {
+//   if (temperatureElement.innerHTML.split("").includes("C")) {
+//     return;
+//   }
+//   let temp = parseFloat(temperatureElement.innerHTML) - 32;
+//   let tempMin = parseFloat(currentTemperatureMin.innerHTML) - 32;
+//   let tempMax = parseFloat(currentTemperatureMax.innerHTML) - 32;
+//   let degreesMain = temp / 1.8;
+//   let degreesMin = tempMin / 1.8;
+//   let degreesMax = tempMax / 1.8;
+//   temperatureElement.innerHTML = `${Math.round(degreesMain)} \u00B0 C`;
+//   currentTemperatureMin.innerHTML = `${Math.round(degreesMin)} \u00B0 C`;
+//   currentTemperatureMax.innerHTML = `${Math.round(degreesMax)} \u00B0 C`;
+//   windSpeedElement.innerHTML = `${originalWindSpeed} km/h`;
+// }
 
-metriccalc.addEventListener("click", IToM);
+// metriccalc.addEventListener("click", IToM);
 
 function handlePosition(position) {
   let lat = parseFloat(position.coords.latitude);
@@ -86,19 +89,20 @@ function getForecast(coordinates) {
 }
 
 function showTemperature(response) {
-  temperatureElement.innerHTML = `${Math.round(
-    response.data.main.temp
-  )} \u00B0 C`;
-  windSpeedElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+  temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}`;
+  currentTemperatureFeelsLike.innerHTML = `${Math.round(
+    response.data.main.feels_like
+  )}`;
+  windSpeedElement.innerHTML = `${Math.round(response.data.wind.speed)}`;
   originalWindSpeed = Math.round(response.data.wind.speed);
   humidityElement.innerHTML = `${response.data.main.humidity} %`;
   currentWeatherDescription.innerHTML = response.data.weather[0].description;
   currentTemperatureMin.innerHTML = `${Math.round(
     response.data.main.temp_min
-  )} \u00B0 C`;
+  )}`;
   currentTemperatureMax.innerHTML = `${Math.round(
     response.data.main.temp_max
-  )} \u00B0 C`;
+  )}`;
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -129,15 +133,7 @@ function formatDate(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days[date.getDay()];
   let months = [
     "Jan",

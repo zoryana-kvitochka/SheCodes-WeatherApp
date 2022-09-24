@@ -47,19 +47,21 @@
                 alt="current geolocation icon"
               />
             </button>
-            <button class="imperial" id="imperial-btn">Imperial</button>
-            <button class="metric" id="metric-btn">Metric</button>
+            <!-- <button class="imperial" id="imperial-btn">Imperial</button>
+            <button class="metric" id="metric-btn">Metric</button> -->
           </div>
           <div class="form-input-current">
             <div class="current-forecast">
               <p id="current-location"></p>
               <ul class="current-weather">
                 <li>Last updated: <span id="current-weather-date"></span></li>
-                <li id="current-temperature"></li>
-                <li id="current-temp-feels-like"></li>
+                <li>Currently <span id="current-temperature"></span>° C</li>
                 <li>
-                  High <span id="current-temp-max"></span> Low
-                  <span id="current-temp-min"></span>
+                  Feels like <span id="current-temp-feels-like"></span> ° C
+                </li>
+                <li>
+                  High <span id="current-temp-max"></span>° C Low
+                  <span id="current-temp-min"></span>° C
                 </li>
                 <li>
                   <img
@@ -75,7 +77,7 @@
                     src="weathericons/windspeed.png"
                     alt="wind speed"
                   />
-                  <span id="wind-speed"></span>
+                  <span id="wind-speed"></span>km/h
                 </li>
               </ul>
               <img id="current-weather-icon" src="" alt="" />
